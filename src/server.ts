@@ -14,14 +14,16 @@ import { IndexRoute } from "./routes/indexRoute";
 
 //interfaces
 import { IUser } from "./interfaces/user"; //import IUser
+import { IEvent } from "./interfaces/event"; //import IEvent
 
 //models
 import { IModel } from "./models/model"; //import IModel
 import { IUserModel } from "./models/user"; //import IUserModel
+import { IEventModel } from "./models/event"; //import IEventModel
 
 //schemas
 import { userSchema } from "./schemas/user"; //import userSchema
-
+import { eventSchema } from "./schemas/event"; //import userSchema
 
 
 export class Server {
