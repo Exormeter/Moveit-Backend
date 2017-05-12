@@ -7,12 +7,15 @@ const logger = require("morgan");
 const path = require("path");
 const errorHandler = require("errorhandler");
 const methodOverride = require("method-override");
+const mongoose = require("mongoose");
 const indexRoute_1 = require("./routes/indexRoute");
+const user_1 = require("./schemas/user");
 class Server {
     static bootstrap() {
         return new Server();
     }
     constructor() {
+        this.model = Object();
         this.app = express();
         this.config();
         this.routes();
@@ -21,6 +24,7 @@ class Server {
     api() {
     }
     config() {
+        const MONGODB_CONNECTION = "mongodb://localhost:27017/heros";
         this.app.use(express.static(path.join(__dirname, "public")));
         this.app.set("views", path.join(__dirname, "views"));
         this.app.set("view engine", "pug");
@@ -31,6 +35,10 @@ class Server {
         }));
         this.app.use(cookieParser("SECRET_GOES_HERE"));
         this.app.use(methodOverride());
+        global.Promise = require("q").Promise;
+        mongoose.Promise = global.Promise;
+        let connection = mongoose.createConnection(MONGODB_CONNECTION);
+        this.model.user = connection.model("User", user_1.userSchema);
         this.app.use(function (err, req, res, next) {
             err.status = 404;
             next(err);
