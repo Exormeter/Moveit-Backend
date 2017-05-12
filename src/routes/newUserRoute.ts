@@ -2,12 +2,12 @@ import { IUser } from "../interfaces/user";
 import { IUserModel } from "../models/user";
 import { userSchema } from "../schemas/user";
 import { NextFunction, Request, Response, Router } from 'express';
-import { BaseRoute} from './baseRoute';
+import { BaseRoute } from './baseRoute';
 
 
 
 
-export class newUserRoute extends BaseRoute{
+export class newUserRoute extends BaseRoute {
 
     public static create(router: Router) {
         console.log("Create index route");
@@ -15,6 +15,17 @@ export class newUserRoute extends BaseRoute{
         router.get("/", (req: Request, res: Response, next: NextFunction) => {
             new newUserRoute().index(req, res, next);
         })
+    }
+
+    public index(req: Request, res: Response, next: NextFunction) {
+        this.title = "newUserRoute";
+
+        let options: Object = {
+            'message': "Welcome to newUserRoute"
+        };
+
+
+        this.render(req, res, 'HelloWorld', options);
     }
 
 }

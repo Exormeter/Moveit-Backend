@@ -5,8 +5,8 @@ export interface IEvent {
   keywords?: string[];
   longitude?: Float64Array;
   latitude?: Float64Array;
-  startZeit?: Date;
-  teilnehmer?: IUser[];
+  starttimepoint?: Date;
+  subscriber?: IUser[];
 
 
 }
