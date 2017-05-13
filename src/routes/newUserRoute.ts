@@ -10,13 +10,14 @@ import { BaseRoute } from './baseRoute';
 export class newUserRoute extends BaseRoute {
 
     public static create(router: Router) {
-        console.log("Create index route");
+        console.log("Create newUserRoute");
 
-        router.get("/", (req: Request, res: Response, next: NextFunction) => {
-            new newUserRoute().index(req, res, next);
+        router.post("/newUser", (req: Request, res: Response, next: NextFunction) => {
+            // ???
         })
     }
 
+/*
     public index(req: Request, res: Response, next: NextFunction) {
         this.title = "newUserRoute";
 
@@ -27,5 +28,6 @@ export class newUserRoute extends BaseRoute {
 
         this.render(req, res, 'HelloWorld', options);
     }
+*/
 
 }

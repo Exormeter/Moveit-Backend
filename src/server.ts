@@ -11,6 +11,7 @@ import mongoose = require("mongoose"); //import mongoose
 
 //routes
 import { IndexRoute } from "./routes/indexRoute";
+import { newUserRoute } from "./routes/newUserRoute";
 
 //interfaces
 import { IUser } from "./interfaces/user"; //import IUser
@@ -57,7 +58,7 @@ export class Server {
 
 
      public config() {
-        const MONGODB_CONNECTION: string = "mongodb://localhost:27017/heros";
+        const MONGODB_CONNECTION: string = "mongodb://localhost:27017/moveit";
 
         //add static paths
         this.app.use(express.static(path.join(__dirname, "public")));
@@ -101,6 +102,9 @@ export class Server {
 
         //error handling
         this.app.use(errorHandler());
+
+                // Make our db accessible to our router ???
+
     }
 
 
@@ -110,6 +114,8 @@ export class Server {
 
         //IndexRoute
         IndexRoute.create(router);
+        //newUserRoute
+        newUserRoute.create(router);
 
         //use router middleware
         this.app.use(router);
