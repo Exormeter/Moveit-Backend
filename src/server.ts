@@ -14,8 +14,8 @@ import { IndexRoute } from "./routes/indexRoute";
 import { newUserRoute } from "./routes/newUserRoute";
 
 //interfaces
-import { IUser } from "./interfaces/user"; //import IUser
-import { IEvent } from "./interfaces/event"; //import IEvent
+// import * as User from './models/user';      // import User
+// import * as Event from './models/event';    // import Event
 
 
 export class Server {
@@ -23,13 +23,13 @@ export class Server {
     public app: express.Application;
 
 
-    public static bootstrap():Server {
+    public static bootstrap(): Server {
         return new Server();
     }
 
 
-    constructor(){
-        
+    constructor() {
+
         this.app = express();
 
         this.config();
@@ -40,12 +40,12 @@ export class Server {
     }
 
 
-    public api(){
+    public api() {
 
     }
 
 
-     public config() {
+    public config() {
         const MONGODB_CONNECTION: string = "mongodb://localhost:27017/moveitDB";
 
         //add static paths
@@ -63,7 +63,7 @@ export class Server {
 
         //mount query string parser
         this.app.use(bodyParser.urlencoded({
-        extended: true
+            extended: true
         }));
 
         //mount cookie parker
@@ -84,16 +84,13 @@ export class Server {
 
 
         // catch 404 and forward to error handler
-        this.app.use(function(err: any, req: express.Request, res: express.Response, next: express.NextFunction) {
+        this.app.use(function (err: any, req: express.Request, res: express.Response, next: express.NextFunction) {
             err.status = 404;
             next(err);
         });
 
         //error handling
         this.app.use(errorHandler());
-
-                // Make our db accessible to our router ???
-
     }
 
 

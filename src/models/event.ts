@@ -1,23 +1,34 @@
-import mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-import {IEvent} from "../interfaces/event";
-import {UserSchema} from "./user"
+import * as mongoose from 'mongoose';
+import * as User from './user';
 
-export const eventSchema  = new Schema({
-    createdAt: Date,
-    title: String,
-    keywords: [String],
-    longitude: Float64Array,
-    latitude: Float64Array,
-    starttimepoint: Date,
-    subscriber: [UserSchema],
+interface IEvent {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  birthdate?: string;
+  sex?: string;
+  picture?: string;
+}
+
+interface IEventModel extends IEvent, mongoose.Document { };
+
+var eventSchema = new mongoose.Schema({
+  createdAt: Date,
+  title: String,
+  keywords: [String],
+  longitude: Float64Array,
+  latitude: Float64Array,
+  starttimepoint: Date,
+  subscriber: [User],
 });
 
-eventSchema.pre("save", function(next) {
+eventSchema.pre("save", function (next) {
   if (!this.createdAt) {
     this.createdAt = new Date();
   }
   next();
 });
 
-export const Event = mongoose.model<IEvent>("User", UserSchema);
+var Event = mongoose.model<IEventModel>("User", eventSchema);
+
+export = Event;
