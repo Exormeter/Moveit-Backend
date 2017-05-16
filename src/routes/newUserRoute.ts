@@ -7,16 +7,16 @@ export class newUserRoute extends BaseRoute {
     public static create(router: Router) {
         console.log("Create newUserRoute");
 
-        router.get("/newUser/:name", (req: Request, res: Response, next: NextFunction) => {
-            new newUserRoute().readAll(req, res, next);
-        });
-
         router.get("/newUser", (req: Request, res: Response, next: NextFunction) => {
             new newUserRoute().readAll(req, res, next);
         });
 
         router.post("/newUser", (req: Request, res: Response, next: NextFunction) => {
             new newUserRoute().create(req, res, next);
+        });
+
+        router.get("/newUser/:name", (req: Request, res: Response, next: NextFunction) => {
+            new newUserRoute().findOne(req, res, next);
         });
     }
 
@@ -47,6 +47,7 @@ export class newUserRoute extends BaseRoute {
 
     /**
      * Anfrage: http://localhost:8080/newUser
+     * 
      * Antwort: {"info":"Users found successfully","data":[]}
      */
     public readAll(req: Request, res: Response, next: NextFunction) {
@@ -60,7 +61,11 @@ export class newUserRoute extends BaseRoute {
     }
 
     /**
-     * Anfrage: http://localhost:8080/newUser?name=Tobias
+     * Anfrage:
+     * http://localhost:8080/newUser/Tobias
+     * 
+     * Antwort:
+     * {"info":"User found successfully","data":{"_id":"591aaf30cb98e421b0e755ec","createdAt":"2017-05-16T07:50:08.023Z","firstName":"Tobias","lastName":"Foobar","email":"user@email.com","birthdate":"2017-01-01","sex":"male","picture":"none","__v":0}}
      */
     public findOne(req: Request, res: Response, next: NextFunction) {
         console.log("Find One Route angesurft");
