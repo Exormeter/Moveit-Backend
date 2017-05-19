@@ -46,7 +46,7 @@ export class Server {
 
 
     public config() {
-        const MONGODB_CONNECTION: string = "mongodb://localhost:27017/moveitDB";
+        const MONGODB_CONNECTION: string = "mongodb://Exormeter:12warhawk34@ds155509.mlab.com:55509/heroku_xb65vxl6"
 
         //add static paths
         this.app.use(express.static(path.join(__dirname, "public")));
