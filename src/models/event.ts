@@ -29,6 +29,6 @@ eventSchema.pre("save", function (next) {
   next();
 });
 
-var Event = mongoose.model<IEventModel>("User", eventSchema);
+var Event = mongoose.model<IEventModel>("Event", eventSchema);
 
 export = Event;
