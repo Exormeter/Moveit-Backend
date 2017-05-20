@@ -1,0 +1,32 @@
+html
+  head
+    title= title
+  body
+    h1= message
+    p= user
+block content
+  .main.container
+    .row
+      .col-md-6.col-md-offset-3
+        h1.display-4.m-b-2 Neues Event
+        // new event form
+        form(method='POST' action='/newEvent')
+            div.form-group
+            label(for='title') Title:
+            input#name.form-control(type='text', placeholder='LaufenA' name='title')
+            div.form-group
+            label(for='keywords') Keywords:
+            input#name.form-control(type='text', placeholder='laufen, ausdauer' name='keywords')
+            div.form-group
+            label(for='longitude') Longitude:
+            input#name.form-control(type='text', placeholder='-1.23' name='longitude')
+            div.form-group
+            label(for='latitude') Latitude:
+            input#name.form-control(type='text', placeholder='-4.56' name='latitude')
+            div.form-group
+            label(for='starttimepoint') Starttimepoint:
+            input#name.form-control(type='text', placeholder='2017-05-21' name='starttimepoint')
+            div.form-group
+            label(for='subscriber') Subscriber:
+            input#name.form-control(type='text', placeholder='admin, admin2' name='subscriber')
+            button.btn.btn-primary(type='submit') Neues Event

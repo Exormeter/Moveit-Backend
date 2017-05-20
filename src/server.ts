@@ -16,6 +16,7 @@ import { newUserRoute } from "./routes/newUserRoute";
 import { LoginRoute } from "./routes/loginRoute";
 import { SignupRoute } from "./routes/signupRoute";
 import { HomeRoute } from "./routes/homeRoute";
+import { NewEventRoute } from "./routes/newEvent";
 //interfaces
 import * as User from './models/user';      // import User
 // import * as Event from './models/event';    // import Event
@@ -217,6 +218,8 @@ export class Server {
         SignupRoute.create(router);
         //HomeRoute
         HomeRoute.create(router);
+        //NewEventRoute
+        NewEventRoute.create(router);
 
         //use router middleware
         app.use(router);

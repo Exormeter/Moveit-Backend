@@ -1,3 +1,4 @@
+import * as Event from '../models/event';    // import Event
 
 import { BaseRoute } from './baseRoute';
 
@@ -23,7 +24,10 @@ export class HomeRoute extends BaseRoute {
         this.title = "Home";
 
         let options: Object = {
-            'message': "Du bist eingeloggt ;-)"
+            'message': "Du bist eingeloggt ;-)",
+            'user': req.user,
+            'event1': /* JSON.stringify( */ Event.find({creator: req.user.username}),
+            'event2': /* JSON.stringify( */ Event.find({subscriber: req.user.username})
         };
 
         this.render(req, res, 'Home', options);
