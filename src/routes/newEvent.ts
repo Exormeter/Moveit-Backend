@@ -34,7 +34,7 @@ export class NewEventRoute extends BaseRoute {
         this.title = "New Event";
 
         let options: Object = {
-            'message': "New Event anlegen ...",
+            'message': "New Event anlegen ... " + req.user.username,
             'user': req.user
         };
 
@@ -42,15 +42,14 @@ export class NewEventRoute extends BaseRoute {
     }
 
     public newEvent(req, res, next) {
-        // var users = User.find({ 'username': req.param('subscriber') });
         new Event({
             creator: req.user.username,
             title: req.param('title'),
-            keywords: [req.param('keywords')],
+            keywords: req.param('keywords').split(','),
             longitude: req.param('longitude'),
             latitude: req.param('latitude'),
             starttimepoint: req.param('starttimepoint'),
-            subscriber: [req.param('subscriber')]
+            subscriber: req.param('subscriber').split(',')
         }).save((err) => {
             if (err)
                 res.json(err);

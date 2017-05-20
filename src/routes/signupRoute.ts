@@ -7,7 +7,7 @@ var passport = require('passport');
 
 export class SignupRoute extends BaseRoute {
     public static create(router: Router) {
-        console.log("Create SignupRoute");
+        console.log("Create signup route");
 
         /* GET Registration Page */
         router.get("/signup", (req: Request, res: Response, next: NextFunction) => {

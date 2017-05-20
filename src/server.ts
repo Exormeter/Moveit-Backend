@@ -200,7 +200,7 @@ export class Server {
 
         // route middleware that will happen on every request
         router.use(function (req, res, next) {
-
+            
             // log each request to the console
             console.log(req.method, req.url);
 

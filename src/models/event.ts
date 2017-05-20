@@ -2,26 +2,26 @@ import * as mongoose from 'mongoose';
 import * as User from './user';
 
 interface IEvent {
-  creator: String;
+  creator: { type: String, ref: 'User' };
   title: String;
   keywords: [String];
   longitude: Number;
   latitude: Number;
   starttimepoint: Date;
-  subscriber: [String];
+  subscriber: [{ type: String, ref: 'User' }];
 }
 
 interface IEventModel extends IEvent, mongoose.Document { };
 
 var eventSchema = new mongoose.Schema({
   createdAt: Date,
-  creator: String,
+  creator: { type: String, ref: 'User' },
   title: String,
   keywords: [String],
   longitude: Number,
   latitude: Number,
   starttimepoint: Date,
-  subscriber: [String]
+  subscriber: [{ type: String, ref: 'User' }]
 });
 
 eventSchema.pre("save", function (next) {

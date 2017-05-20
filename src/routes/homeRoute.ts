@@ -25,11 +25,15 @@ export class HomeRoute extends BaseRoute {
 
         let options: Object = {
             'message': "Du bist eingeloggt ;-)",
-            'user': req.user,
-            'event1': /* JSON.stringify( */ Event.find({creator: req.user.username}),
-            'event2': /* JSON.stringify( */ Event.find({subscriber: req.user.username})
+            'user': req.user
         };
 
-        this.render(req, res, 'Home', options);
+        Event.find({ creator: req.user.username }, (err1, event1) => {
+            Event.find({ subscriber: req.user.username }, (err2, event2) => {
+                options['event1'] = event1;
+                options['event2'] = event2;
+                this.render(req, res, 'Home', options);
+            });
+        });
     }
 }

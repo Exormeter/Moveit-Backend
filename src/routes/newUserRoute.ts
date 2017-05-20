@@ -5,7 +5,7 @@ import { BaseRoute } from './baseRoute';
 
 export class newUserRoute extends BaseRoute {
     public static create(router: Router) {
-        console.log("Create newUserRoute");
+        console.log("Create new user route");
 
         router.get("/newUser", (req: Request, res: Response, next: NextFunction) => {
             new newUserRoute().readAll(req, res, next);
