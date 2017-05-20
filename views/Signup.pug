@@ -1,0 +1,41 @@
+html
+  head
+    title= title
+  body
+    h1= message
+block content
+  .main.container
+    .row
+      .col-md-6.col-md-offset-3
+        h1.display-4.m-b-2 Sign Up
+
+        // register form
+        form(method='POST' action='/signup')
+          div.form-group
+            label(for='firstName') First name:
+            input#name.form-control(type='text', placeholder='first name' name='firstName')
+          div.form-group
+            label(for='lastName') Last name:
+            input#name.form-control(type='text', placeholder='last name' name='lastName')
+          div.form-group
+            label(for='email') Email:
+            input#email.form-control(type='email', placeholder='name@email.com' name='email')
+          div.form-group
+            label(for='birthdate') Birthdate:
+            input#name.form-control(type='text', placeholder='birthdate' name='birthdate')
+          div.form-group
+            label(for='sex') Sex:
+            input#name.form-control(type='text', placeholder='sex' name='sex')
+          div.form-group
+            label(for='picture') Picture:
+            input#name.form-control(type='text', placeholder='picture' name='picture')
+          div.form-group
+            label(for='username') Username:
+            input#name.form-control(type='text', placeholder='username' name='username')
+          div.form-group
+            label(for='pw') Password:
+            input#pw.form-control(type='password' name='password')
+          div.form-group
+            label(for='pw2') Confirm Password:
+            input#pw2.form-control(type='password' name='confirmPassword')
+          button.btn.btn-primary(type='submit') Sign up

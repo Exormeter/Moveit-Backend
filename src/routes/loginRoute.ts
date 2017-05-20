@@ -3,36 +3,37 @@ import * as Event from '../models/event';    // import Event
 import { NextFunction, Request, Response, Router } from 'express';
 import { BaseRoute } from './baseRoute';
 
-export class loginRoute extends BaseRoute{
+var passport = require('passport');
+
+export class LoginRoute extends BaseRoute {
     public static create(router: Router) {
         console.log("Create loginRoute");
 
-        router.post("/login", (req: Request, res: Response, next: NextFunction) => {
-            new loginRoute().login(req, res, next);
+        /* GET login page. */
+        router.get("/login", (req: Request, res: Response, next: NextFunction) => {
+            new LoginRoute().login(req, res, next);
         });
+
+        /* Handle Login POST */
+        router.post('/login', passport.authenticate('login', {
+            successRedirect: '/home',
+            failureRedirect: '/login',
+            failureFlash: true
+        }));
     }
 
     constructor() {
         super();
     }
 
-    public login(req: Request, res: Response, next: NextFunction)
-    {
+    public login(req: Request, res: Response, next: NextFunction) {
         console.log("Login Route angesurft");
-        console.log(req.body);
-        User.findOne({username: req.body.username}, function (err, o) {
-        if (o == null) {
-            console.log('Username existiert nicht');
-        }
-        else {
-            if (o.password === req.body.password) {
-                console.log(o);
-            }
+        this.title = "Login";
 
-            else {
-                console.log("Passwort oder Username falsch")
-            }
-        }
-    });
+        let options: Object = {
+            'message': "Login"
+        };
+
+        this.render(req, res, 'Login', options);
     }
 }

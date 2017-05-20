@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Exormeter/moveit-backend#readme",
   "dependencies": {
     "body-parser": "^1.17.1",
+    "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "errorhandler": "^1.5.0",
     "express": "^4.15.2",
@@ -28,6 +29,8 @@
     "method-override": "^2.3.8",
     "mongoose": "^4.9.8",
     "morgan": "^1.8.1",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "pug": "^2.0.0-rc.1",
     "q": "^1.5.0"
   },
