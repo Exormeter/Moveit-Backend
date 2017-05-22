@@ -1,17 +1,19 @@
-import * as User from '../models/user';      // import User
-import * as Event from '../models/event';    // import Event
-import { NextFunction, Request, Response, Router } from 'express';
+
 import { BaseRoute } from './baseRoute';
 
 var passport = require('passport');
 
 export class SignupRoute extends BaseRoute {
-    public static create(router: Router) {
+    public static create(router) {
         console.log("Create signup route");
 
         /* GET Registration Page */
-        router.get("/signup", (req: Request, res: Response, next: NextFunction) => {
-            new SignupRoute().signup(req, res, next);
+        router.get("/signup", (req, res, next) => {
+            if (req.isAuthenticated()) {
+                res.redirect('/home');
+            } else {
+                new SignupRoute().signup(req, res, next);
+            }
         });
 
         /* Handle Registration POST */
@@ -26,12 +28,12 @@ export class SignupRoute extends BaseRoute {
         super();
     }
 
-    public signup(req: Request, res: Response, next: NextFunction) {
+    public signup(req, res, next) {
         console.log("Signup Route angesurft");
         this.title = "Signup";
 
         let options: Object = {
-            'message': "Signup"
+            'message': req.flash('message')
         };
 
         this.render(req, res, 'Signup', options);

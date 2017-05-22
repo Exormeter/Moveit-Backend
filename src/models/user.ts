@@ -7,9 +7,8 @@ interface IUser {
   birthdate?: string;
   sex?: string;
   picture?: string;
-  username?: string;
-  password?: string;
-  events?: [{ type: String, ref: 'Event' }];
+  username: string;
+  password: string;
 }
 
 interface IUserModel extends IUser, mongoose.Document { };
@@ -23,8 +22,7 @@ var userSchema = new mongoose.Schema({
   sex: String,
   picture: String,
   username: String,
-  password: String,
-  events: [{ type: String, ref: 'Event' }]
+  password: String
 });
 
 userSchema.pre("save", function (next) {

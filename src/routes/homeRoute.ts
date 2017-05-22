@@ -21,6 +21,8 @@ export class HomeRoute extends BaseRoute {
     }
 
     public home(req, res, next) {
+        console.log("Home Route angesurft");
+
         this.title = "Home";
 
         let options: Object = {

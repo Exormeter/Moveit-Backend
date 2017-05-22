@@ -1,16 +1,14 @@
-import * as User from '../models/user';      // import User
-import * as Event from '../models/event';    // import Event
-import { NextFunction, Request, Response, Router } from 'express';
+
 import { BaseRoute } from './baseRoute';
 
 var passport = require('passport');
 
 export class LoginRoute extends BaseRoute {
-    public static create(router: Router) {
+    public static create(router) {
         console.log("Create login route");
 
         /* GET login page. */
-        router.get("/login", (req: Request, res: Response, next: NextFunction) => {
+        router.get("/login", (req, res, next) => {
             new LoginRoute().login(req, res, next);
         });
 
@@ -26,12 +24,12 @@ export class LoginRoute extends BaseRoute {
         super();
     }
 
-    public login(req: Request, res: Response, next: NextFunction) {
+    public login(req, res, next) {
         console.log("Login Route angesurft");
         this.title = "Login";
 
         let options: Object = {
-            'message': "Login"
+            'message': req.flash('message')
         };
 
         this.render(req, res, 'Login', options);

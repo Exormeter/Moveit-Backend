@@ -12,11 +12,14 @@ import mongoose = require("mongoose"); //import mongoose
 
 //routes
 import { IndexRoute } from "./routes/indexRoute";
-import { newUserRoute } from "./routes/newUserRoute";
+// import { newUserRoute } from "./routes/newUserRoute";
 import { LoginRoute } from "./routes/loginRoute";
 import { SignupRoute } from "./routes/signupRoute";
 import { HomeRoute } from "./routes/homeRoute";
-import { NewEventRoute } from "./routes/newEvent";
+import { NewEventRoute } from "./routes/newEventRoute";
+import { MyEventsRoute } from "./routes/myEventsRoute";
+import { MyEventsSubscriberRoute } from "./routes/myEventsSubscriberRoute";
+import { AllUsersRoute } from "./routes/allUsersRoute";
 //interfaces
 import * as User from './models/user';      // import User
 // import * as Event from './models/event';    // import Event
@@ -157,6 +160,9 @@ export class Server {
                         newUser.email = req.param('email');
                         newUser.firstName = req.param('firstName');
                         newUser.lastName = req.param('lastName');
+                        newUser.birthdate = req.param('birthdate');
+                        newUser.sex = req.param('sex');
+                        newUser.picture = req.param('picture');
 
                         // save the user
                         newUser.save(function (err) {
@@ -211,7 +217,7 @@ export class Server {
         //IndexRoute
         IndexRoute.create(router);
         //newUserRoute
-        newUserRoute.create(router);
+        // newUserRoute.create(router);
         //LoginRoute
         LoginRoute.create(router);
         //SignupRoute
@@ -220,6 +226,12 @@ export class Server {
         HomeRoute.create(router);
         //NewEventRoute
         NewEventRoute.create(router);
+        //MyEventsRoute
+        MyEventsRoute.create(router);
+        //MyEventsSubscriberRoute
+        MyEventsSubscriberRoute.create(router);
+        //AllUsersRoute
+        AllUsersRoute.create(router);
 
         //use router middleware
         app.use(router);

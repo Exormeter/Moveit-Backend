@@ -1,4 +1,4 @@
-// import * as User from '../models/user';      // import User
+
 import * as Event from '../models/event';    // import Event
 
 import { BaseRoute } from './baseRoute';
@@ -31,10 +31,12 @@ export class NewEventRoute extends BaseRoute {
     }
 
     public form(req, res, next) {
+        console.log("New Event Route angesurft");
+
         this.title = "New Event";
 
         let options: Object = {
-            'message': "New Event anlegen ... " + req.user.username,
+            'message': "New Event anlegen ... " + req.flash('message'),
             'user': req.user
         };
 
@@ -51,8 +53,9 @@ export class NewEventRoute extends BaseRoute {
             starttimepoint: req.param('starttimepoint'),
             subscriber: req.param('subscriber').split(',')
         }).save((err) => {
-            if (err)
+            if (err) {
                 res.json(err);
+            }
             res.redirect('/home');
         });
     }
