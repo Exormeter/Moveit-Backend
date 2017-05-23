@@ -20,6 +20,7 @@ import { NewEventRoute } from "./routes/newEventRoute";
 import { MyEventsRoute } from "./routes/myEventsRoute";
 import { MyEventsSubscriberRoute } from "./routes/myEventsSubscriberRoute";
 import { AllUsersRoute } from "./routes/allUsersRoute";
+import { LogoutRoute } from "./routes/logoutRoute";
 //interfaces
 import * as User from './models/user';      // import User
 // import * as Event from './models/event';    // import Event
@@ -206,7 +207,7 @@ export class Server {
 
         // route middleware that will happen on every request
         router.use(function (req, res, next) {
-            
+
             // log each request to the console
             console.log(req.method, req.url);
 
@@ -232,6 +233,8 @@ export class Server {
         MyEventsSubscriberRoute.create(router);
         //AllUsersRoute
         AllUsersRoute.create(router);
+        //LogoutRoute
+        LogoutRoute.create(router);
 
         //use router middleware
         app.use(router);
