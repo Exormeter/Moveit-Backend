@@ -13,7 +13,6 @@ export class LogoutRoute extends BaseRoute {
                 req.logout();
                 new LogoutRoute().success(req, res, next);
             } else {
-                res.redirect('/login');
                 new LogoutRoute().failure(req, res, next);
             }
         });
