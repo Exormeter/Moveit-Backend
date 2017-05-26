@@ -193,7 +193,7 @@ export class Server {
         });
 
         // Use cors
-        var whitelist = ['http://localhost:8100', 'https://moveit-backend.herokuapp.com']
+        var whitelist = ['http://localhost:8100/', 'http://localhost:8100', 'https://moveit-backend.herokuapp.com']
         var corsOptions = {
             origin: function (origin, callback) {
                 if (whitelist.indexOf(origin) !== -1) {
@@ -204,18 +204,21 @@ export class Server {
             }
         }
         // app.options('*', cors(corsOptions));
-        // app.use(cors(corsOptions));
-        app.use(function (req, res, next) {
+        app.use(cors(corsOptions));
+        /*app.use(function (req, res, next) {
             res.header('Access-Control-Allow-Credentials', true);
             res.header('Access-Control-Allow-Origin', req.headers.origin);
-            // res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-            // res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-            /* if ('OPTIONS' == req.method) {
+            res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+            res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+            // intercept OPTIONS method
+            if ('OPTIONS' == req.method) {
                 res.send(200);
-            } else {
+            }
+            else {
                 next();
-            } */
-        });
+            }
+        });*/
 
         // catch 404 and forward to error handler
         app.use(function (err: any, req, res, next) {
