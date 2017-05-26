@@ -205,6 +205,10 @@ export class Server {
         }
         app.options('*', cors(corsOptions));
         app.use(cors(corsOptions));
+        app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
 
         // catch 404 and forward to error handler
         app.use(function (err: any, req, res, next) {
