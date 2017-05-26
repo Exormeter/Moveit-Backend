@@ -16,7 +16,7 @@ export class LoginRoute extends BaseRoute {
         router.post('/login', function (req, res, next) {
             passport.authenticate('login', function (err, user, info) {
                 if (err) { return next(err); }
-                if (!user) { return res.redirect('/login'); }
+                if (!user) { res.json({ message: 'Login fehlgeschlagen' }); }
                 req.logIn(user, function (err) {
                     if (err) { return next(err); }
                     res.json({ message: 'Login erfolgreich' });
