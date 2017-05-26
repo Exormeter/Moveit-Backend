@@ -13,10 +13,11 @@ export class LoginRoute extends BaseRoute {
         });
 
         /* Handle Login POST */
-        router.post('/login', passport.authenticate('login', {
-            successRedirect: '/home',
-            failureRedirect: '/login',
-            failureFlash: true
+        router.post('/login', passport.authenticate('login', function (req, res) {
+            // If this function gets called, authentication was successful.
+            // `req.user` contains the authenticated user.
+            // res.redirect('/users/' + req.user.username);
+            res.json('Login erfolgreich');
         }));
     }
 
