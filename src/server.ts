@@ -203,7 +203,7 @@ export class Server {
                 }
             }
         }
-        app.options('*', cors(corsOptions));
+        // app.options('*', cors(corsOptions));
         app.use(cors(corsOptions));
 
         // catch 404 and forward to error handler
