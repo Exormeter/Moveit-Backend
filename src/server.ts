@@ -193,7 +193,7 @@ export class Server {
         });
 
         // Use cors
-        app.use(cors());
+        app.use(cors({origin: 'https://moveit-backend.herokuapp.com/'}));
 
         // catch 404 and forward to error handler
         app.use(function (err: any, req, res, next) {
