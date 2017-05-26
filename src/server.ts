@@ -196,14 +196,14 @@ export class Server {
         var whitelist = ['http://localhost:8100/', 'http://localhost:8100', 'https://moveit-backend.herokuapp.com']
         var corsOptions = {
             origin: function (origin, callback) {
-                if (whitelist.indexOf(origin) !== -1) {
+                //if (whitelist.indexOf(origin) !== -1) {
                     callback(null, true)
-                } else {
-                    callback(new Error('Not allowed by CORS'))
-                }
+                //} else {
+                //    callback(new Error('Not allowed by CORS'))
+                //}
             }
         }
-        // app.options('*', cors(corsOptions));
+        app.options('*', cors(corsOptions));
         app.use(cors(corsOptions));
         /*app.use(function (req, res, next) {
             res.header('Access-Control-Allow-Credentials', true);
