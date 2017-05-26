@@ -31,6 +31,8 @@ var LocalStrategy = require('passport-local');
 var expressSession = require('express-session');
 var flash = require('connect-flash');
 
+// Use cors
+var cors = require('cors');
 
 export class Server {
 
@@ -190,11 +192,8 @@ export class Server {
             console.log("Connected to database " + MONGODB_CONNECTION);
         });
 
-        app.use(function (req, res, next) {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-            next();
-        });
+        // Use cors
+        app.use(cors());
 
         // catch 404 and forward to error handler
         app.use(function (err: any, req, res, next) {
