@@ -19,7 +19,7 @@ export class LoginRoute extends BaseRoute {
                 if (!user) { return res.redirect('/login'); }
                 req.logIn(user, function (err) {
                     if (err) { return next(err); }
-                    return res.json({message: 'Login erfolgreich'});
+                    res.json({ message: 'Login erfolgreich' });
                 });
             })(req, res, next);
         });
