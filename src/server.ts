@@ -190,10 +190,15 @@ export class Server {
             console.log("Connected to database " + MONGODB_CONNECTION);
         });
 
+        app.use(function (req, res, next) {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            next();
+        });
 
         // catch 404 and forward to error handler
         app.use(function (err: any, req, res, next) {
-            err.status = 404;
+            // err.status = 404;
             next(err);
         });
 
