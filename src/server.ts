@@ -193,8 +193,18 @@ export class Server {
         });
 
         // Use cors
-        app.options('*', cors());
-        app.use(cors());
+        var whitelist = ['http://localhost:8100', 'https://moveit-backend.herokuapp.com']
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+        app.options('*', cors(corsOptions));
+        app.use(cors(corsOptions));
 
         // catch 404 and forward to error handler
         app.use(function (err: any, req, res, next) {
