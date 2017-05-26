@@ -13,12 +13,16 @@ export class LoginRoute extends BaseRoute {
         });
 
         /* Handle Login POST */
-        router.post('/login', passport.authenticate('login', function (req, res) {
-            // If this function gets called, authentication was successful.
-            // `req.user` contains the authenticated user.
-            // res.redirect('/users/' + req.user.username);
-            res.json({message: 'Login erfolgreich'});
-        }));
+        router.post('/login', function (req, res, next) {
+            passport.authenticate('local', function (err, user, info) {
+                if (err) { return next(err); }
+                if (!user) { return res.redirect('/login'); }
+                req.logIn(user, function (err) {
+                    if (err) { return next(err); }
+                    return res.json({message: 'Login erfolgreich'});
+                });
+            })(req, res, next);
+        });
     }
 
     constructor() {
