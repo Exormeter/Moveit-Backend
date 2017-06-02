@@ -15,6 +15,7 @@ import { IndexRoute } from "./routes/indexRoute";
 // import { newUserRoute } from "./routes/newUserRoute";
 import { LoginRoute } from "./routes/loginRoute";
 import { SignupRoute } from "./routes/signupRoute";
+import { UserRoute } from "./routes/userRoute";
 import { HomeRoute } from "./routes/homeRoute";
 import { NewEventRoute } from "./routes/newEventRoute";
 import { MyEventsRoute } from "./routes/myEventsRoute";
@@ -198,7 +199,7 @@ export class Server {
         var corsOptions = {
             origin: function (origin, callback) {
                 //if (whitelist.indexOf(origin) !== -1) {
-                    callback(null, true)
+                callback(null, true)
                 //} else {
                 //    callback(new Error('Not allowed by CORS'))
                 //}
@@ -255,6 +256,8 @@ export class Server {
         LoginRoute.create(router);
         //SignupRoute
         SignupRoute.create(router);
+        //UserRoute
+        UserRoute.create(router);
         //HomeRoute
         HomeRoute.create(router);
         //NewEventRoute
