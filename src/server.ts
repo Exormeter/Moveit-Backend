@@ -152,8 +152,7 @@ export class Server {
                     // already exists
                     if (user) {
                         console.log('User already exists');
-                        return done(null, false,
-                            req.flash('message', 'User Already Exists'));
+                        return done(null, false, { message: 'User Already Exists' });
                     } else {
                         // if there is no user with that email
                         // create the user
@@ -162,12 +161,12 @@ export class Server {
                         newUser.username = username;
                         // newUser.password = createHash(password);
                         newUser.password = password; // !!! !!! !!!
-                        newUser.email = req.param('email');
-                        newUser.firstName = req.param('firstName');
-                        newUser.lastName = req.param('lastName');
-                        newUser.birthdate = req.param('birthdate');
-                        newUser.sex = req.param('sex');
-                        newUser.picture = req.param('picture');
+                        newUser.email = req.body.email;
+                        newUser.firstName = req.body.firstName;
+                        newUser.lastName = req.body.lastName;
+                        newUser.birthdate = req.body.birthdate;
+                        newUser.sex = req.body.sex;
+                        newUser.picture = req.body.picture;
 
                         // save the user
                         newUser.save(function (err) {
@@ -176,7 +175,7 @@ export class Server {
                                 throw err;
                             }
                             console.log('User Registration succesful');
-                            return done(null, newUser);
+                            return done(null, newUser, { message: 'User Registration succesful' });
                         });
                     }
                 });

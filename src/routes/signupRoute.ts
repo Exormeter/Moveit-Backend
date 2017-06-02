@@ -17,11 +17,16 @@ export class SignupRoute extends BaseRoute {
         });
 
         /* Handle Registration POST */
-        router.post('/signup', passport.authenticate('signup', {
-            successRedirect: '/home',
-            failureRedirect: '/signup',
-            failureFlash: true
-        }));
+        router.post('/signup', function (req, res, next) {
+            passport.authenticate('signup', function (err, user, info) {
+                if (err) { return next(err); }
+                if (!user) { return res.json(info); }
+                req.logIn(user, function (err) {
+                    if (err) { return next(err); }
+                    return res.json(info);
+                });
+            })(req, res, next);
+        });
     }
 
     constructor() {
