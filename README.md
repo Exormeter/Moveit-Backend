@@ -15,6 +15,9 @@ kann zu einem REST Server mit MongoDB anbindung umgebaut werden.
 ```
 / - Einfache Willkommensseite, das Backend läuft (GET)
 /signup - Einfaches Formular zum Registrieren (GET und POST)
+  {"message":"Missing credentials"} - Wenn Benutzername und/oder Passwort fehlen
+  {"message":"User Already Exists"} - Wenn Benutzername doppelt
+  {"message":"User Registration succesful"} - Wenn erfolgreich, dann auch angemeldet
 /login - Einfaches Formular zum Anmelden (GET und POST)
 /home - Einfache home-Seite
 /newEvent - Einfaches Formular für ein neues Event (GET und POST)
