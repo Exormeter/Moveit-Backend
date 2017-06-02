@@ -2,13 +2,13 @@ import * as mongoose from 'mongoose';
 import * as User from './user';
 
 interface IEvent {
-  creator: { type: String, ref: 'User' };
-  title: String;
-  keywords: [String];
-  longitude: Number;
-  latitude: Number;
+  creator: { type: string, ref: 'User' };
+  title: string;
+  keywords: [string];
+  longitude: number;
+  latitude: number;
   starttimepoint: Date;
-  subscriber: [{ type: String, ref: 'User' }];
+  subscriber: [{ type: string, ref: 'User' }];
 }
 
 interface IEventModel extends IEvent, mongoose.Document { };

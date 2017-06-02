@@ -19,6 +19,7 @@ import { HomeRoute } from "./routes/homeRoute";
 import { NewEventRoute } from "./routes/newEventRoute";
 import { MyEventsRoute } from "./routes/myEventsRoute";
 import { MyEventsSubscriberRoute } from "./routes/myEventsSubscriberRoute";
+import { AllEventsCircleRoute } from "./routes/allEventsCircleRoute";
 import { AllUsersRoute } from "./routes/allUsersRoute";
 import { LogoutRoute } from "./routes/logoutRoute";
 //interfaces
@@ -257,6 +258,8 @@ export class Server {
         MyEventsRoute.create(router);
         //MyEventsSubscriberRoute
         MyEventsSubscriberRoute.create(router);
+        //AllEventsCircleRoute
+        AllEventsCircleRoute.create(router);
         //AllUsersRoute
         AllUsersRoute.create(router);
         //LogoutRoute
