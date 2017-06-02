@@ -38,7 +38,7 @@ export class SignupRoute extends BaseRoute {
         this.title = "Signup";
 
         let options: Object = {
-            'message': req.flash('message')
+            'message': 'Sign Up'
         };
 
         this.render(req, res, 'Signup', options);

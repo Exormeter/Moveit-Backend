@@ -36,7 +36,7 @@ export class NewEventRoute extends BaseRoute {
         this.title = "New Event";
 
         let options: Object = {
-            'message': "New Event anlegen ... " + req.flash('message'),
+            'message': "New Event anlegen",
             'user': req.user
         };
 
