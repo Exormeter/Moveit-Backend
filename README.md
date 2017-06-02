@@ -20,5 +20,9 @@ kann zu einem REST Server mit MongoDB anbindung umgebaut werden.
 /newEvent - Einfaches Formular für ein neues Event (GET und POST)
 /myEvents - Alle Events, die der user erstellt hat (GET und JSON)
 /myEventsSubscriber - Alle Events, an denen der user teilnimmt (GET und JSON)
+/allEventsCircle?lon=<number>&lat=<number>&dis=<number> - Alle Events im Umkreis (GET und JSON)
+  lon: Longitude aktuelle Position
+  lat: Latitude aktuelle Position
+  dis: Distanz zur aktuellen Position (Umkreis)
 /allUsers - Ein Array mit allen Benutzernamen (GET und JSON)
 ```
