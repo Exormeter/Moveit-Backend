@@ -12,7 +12,7 @@ kann zu einem REST Server mit MongoDB anbindung umgebaut werden.
 
 
 ## Sites / API
-
+```
 ```/``` - Einfache Willkommensseite, das Backend läuft (GET)
 ```/signup``` - Einfaches Formular zum Registrieren (GET und POST)
 ```/login``` - Einfaches Formular zum Anmelden (GET und POST)
@@ -21,3 +21,4 @@ kann zu einem REST Server mit MongoDB anbindung umgebaut werden.
 ```/myEvents``` - Alle Events, die der user erstellt hat (GET und JSON)
 ```/myEventsSubscriber``` - Alle Events, an denen der user teilnimmt (GET und JSON)
 ```/allUsers``` - Ein Array mit allen Benutzernamen (GET und JSON)
+```
