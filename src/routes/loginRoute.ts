@@ -16,10 +16,10 @@ export class LoginRoute extends BaseRoute {
         router.post('/login', function (req, res, next) {
             passport.authenticate('login', function (err, user, info) {
                 if (err) { return next(err); }
-                if (!user) { res.json({ message: 'Login fehlgeschlagen' }); }
+                if (!user) { return res.json(info); }
                 req.logIn(user, function (err) {
                     if (err) { return next(err); }
-                    res.json({ message: 'Login erfolgreich' });
+                    return res.json(info);
                 });
             })(req, res, next);
         });
@@ -34,7 +34,7 @@ export class LoginRoute extends BaseRoute {
         this.title = "Login";
 
         let options: Object = {
-            'message': req.flash('message')
+            'message': 'anmelden...'
         };
 
         this.render(req, res, 'Login', options);

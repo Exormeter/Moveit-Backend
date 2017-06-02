@@ -31,7 +31,7 @@ import * as User from './models/user';      // import User
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var expressSession = require('express-session');
-var flash = require('connect-flash');
+// var flash = require('connect-flash');
 
 // Use cors
 var cors = require('cors');
@@ -94,7 +94,7 @@ export class Server {
         app.use(expressSession({ secret: 'mySecretKey' }));
         app.use(passport.initialize());
         app.use(passport.session());
-        app.use(flash());
+        // app.use(flash());
 
         passport.serializeUser(function (user, done) {
             done(null, user._id);
@@ -119,19 +119,17 @@ export class Server {
                         // Username does not exist, log error & redirect back
                         if (!user) {
                             console.log('User Not Found with username ' + username);
-                            return done(null, false,
-                                req.flash('message', 'User Not found.'));
+                            return done(null, false, { message: 'User Not found' });
                         }
                         // User exists but wrong password, log the error 
                         // if (!isValidPassword(user, password)) {
                         if (user.password !== password) { // !!! !!! !!!
                             console.log('Invalid Password');
-                            return done(null, false,
-                                req.flash('message', 'Invalid Password'));
+                            return done(null, false, { message: 'Invalid Password' });
                         }
                         // User and password both match, return user from 
                         // done method which will be treated like success
-                        return done(null, user);
+                        return done(null, user, { message: 'User Login succesful' });
                     }
                 );
             })
