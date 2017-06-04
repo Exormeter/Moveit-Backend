@@ -8,7 +8,7 @@ import * as path from 'path';
 import errorHandler = require('errorhandler');
 import methodOverride = require('method-override');
 
-import mongoose = require("mongoose"); //import mongoose
+import mongoose = require("mongoose"); // import mongoose
 
 //routes
 import { IndexRoute } from "./routes/indexRoute";
@@ -23,18 +23,14 @@ import { MyEventsSubscriberRoute } from "./routes/myEventsSubscriberRoute";
 import { AllEventsCircleRoute } from "./routes/allEventsCircleRoute";
 import { AllUsersRoute } from "./routes/allUsersRoute";
 import { LogoutRoute } from "./routes/logoutRoute";
+
 //interfaces
-import * as User from './models/user';      // import User
-// import * as Event from './models/event';    // import Event
+import * as User from './models/user'; // import User
 
 // Configuring Passport
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var expressSession = require('express-session');
-// var flash = require('connect-flash');
-
-// Use cors
-var cors = require('cors');
 
 export class Server {
 
@@ -44,10 +40,7 @@ export class Server {
         return new Server();
     }
 
-
     constructor() {
-
-
         this.config();
 
         this.routes();
@@ -55,11 +48,9 @@ export class Server {
         this.api();
     }
 
-
     public api() {
 
     }
-
 
     public config() {
         const MONGODB_CONNECTION: string = "mongodb://Exormeter:12warhawk34@ds155509.mlab.com:55509/heroku_xb65vxl6"
@@ -94,7 +85,6 @@ export class Server {
         app.use(expressSession({ secret: 'mySecretKey' }));
         app.use(passport.initialize());
         app.use(passport.session());
-        // app.use(flash());
 
         passport.serializeUser(function (user, done) {
             done(null, user._id);
@@ -191,35 +181,16 @@ export class Server {
             console.log("Connected to database " + MONGODB_CONNECTION);
         });
 
-        // Use cors
-        var whitelist = ['http://localhost:8100/', 'http://localhost:8100', 'https://moveit-backend.herokuapp.com']
-        var corsOptions = {
-            origin: function (origin, callback) {
-                //if (whitelist.indexOf(origin) !== -1) {
-                callback(null, true)
-                //} else {
-                //    callback(new Error('Not allowed by CORS'))
-                //}
-            }
-        }
-        // app.options('*', cors(corsOptions));
-        // app.use(cors(corsOptions));
+
+        // Use cors ...
         app.use(function (req, res, next) {
             res.header('Access-Control-Allow-Credentials', true);
             res.header('Access-Control-Allow-Origin', req.headers.origin);
             res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
             res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
             next();
-            // intercept OPTIONS method
-            /*
-            if ('OPTIONS' == req.method) {
-                res.send(200);
-            }
-            else {
-                next();
-            }
-            */
         });
+
 
         // catch 404 and forward to error handler
         app.use(function (err: any, req, res, next) {
