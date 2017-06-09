@@ -16,7 +16,16 @@ export class SignupRoute extends BaseRoute {
             }
         });
 
-        /* Handle Registration POST */
+        /**
+        @api {post} /signup Signup
+        @apiName PostSignup
+        @apiGroup User
+ 
+        @apiSuccess {String} message User Registration succesful
+
+        @apiError {String} message1 Missing credentials
+        @apiError {String} message2 User Already Exists
+        */
         router.post('/signup', function (req, res, next) {
             passport.authenticate('signup', function (err, user, info) {
                 if (err) { return next(err); }

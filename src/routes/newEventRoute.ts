@@ -16,7 +16,14 @@ export class NewEventRoute extends BaseRoute {
             }
         });
 
-        /* POST New Event Page */
+        /**
+        @api {post} /newEvent Neues Event erstellen
+        @apiName PostNewEvent
+        @apiGroup Event
+ 
+        @apiSuccess {String} message Event erstellt
+
+        */
         router.post('/newEvent', (req, res, next) => {
             if (req.isAuthenticated()) {
                 new NewEventRoute().newEvent(req, res, next);
@@ -56,7 +63,7 @@ export class NewEventRoute extends BaseRoute {
             if (err) {
                 next(err);
             } else {
-                res.redirect('/home');
+                res.json({ message: 'Event erstellt' });
             }
         });
     }

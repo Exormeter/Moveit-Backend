@@ -12,7 +12,17 @@ export class LoginRoute extends BaseRoute {
             new LoginRoute().login(req, res, next);
         });
 
-        /* Handle Login POST */
+        /**
+        @api {post} /login Login
+        @apiName PostLogin
+        @apiGroup User
+ 
+        @apiSuccess {String} message User Login succesful
+
+        @apiError {String} message1 Missing credentials
+        @apiError {String} message2 User Not found
+        @apiError {String} message3 Invalid Password
+        */
         router.post('/login', function (req, res, next) {
             passport.authenticate('login', function (err, user, info) {
                 if (err) { return next(err); }

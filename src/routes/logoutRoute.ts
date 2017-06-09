@@ -7,7 +7,15 @@ export class LogoutRoute extends BaseRoute {
     public static create(router) {
         console.log("Create logout route");
 
-        /* Handle Logout */
+        /**
+        @api {get} /logout Logout
+        @apiName GetLogout
+        @apiGroup User
+ 
+        @apiSuccess {String} response Logout erfolgreich
+
+        @apiError {String} response Nicht angemeldet
+        */
         router.get('/logout', function (req, res, next) {
             if (req.isAuthenticated()) {
                 req.logout();

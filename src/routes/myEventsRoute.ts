@@ -7,6 +7,14 @@ export class MyEventsRoute extends BaseRoute {
     public static create(router) {
         console.log("Create my events route");
 
+        /**
+        @api {get} /myEvents Alle Events des Benutzers
+        @apiName GetMyEvents
+        @apiGroup Event
+ 
+        @apiSuccess {Event[]} response Alle Events des Benutzers
+        @apiSuccess {Event} response.event Ein Event des Benutzers
+        */
         router.get('/myEvents', (req, res, next) => {
             if (req.isAuthenticated()) {
                 new MyEventsRoute().events(req, res, next);
