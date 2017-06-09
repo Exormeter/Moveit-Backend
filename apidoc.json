@@ -1,0 +1,7 @@
+{
+  "name": "moveit-backend",
+  "version": "1.0.0",
+  "description": "Backend for moveit-frontend",
+  "title": "Backend for moveit-frontend",
+  "url": "https://moveit-backend.herokuapp.com"
+}
