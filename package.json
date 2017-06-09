@@ -32,6 +32,7 @@
     "morgan": "^1.8.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+    "password-hash-and-salt": "^0.1.4",
     "pug": "^2.0.0-rc.1",
     "q": "^1.5.0"
   },
