@@ -40,4 +40,6 @@ kann zu einem REST Server mit MongoDB anbindung umgebaut werden.
   dis: Distanz zur aktuellen Position (Umkreis)
   
 /allUsers - Ein Array mit allen Benutzernamen (GET und JSON)
+
+/user - Informationen über den eingeloggten Benutzer
 ```
