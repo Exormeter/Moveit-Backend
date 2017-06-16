@@ -9,6 +9,7 @@ interface IEvent {
   latitude: number;
   starttimepoint: Date;
   subscriber: [{ type: string, ref: 'User' }];
+  distA?: number;
 }
 
 interface IEventModel extends IEvent, mongoose.Document { };
@@ -21,7 +22,8 @@ var eventSchema = new mongoose.Schema({
   longitude: Number,
   latitude: Number,
   starttimepoint: Date,
-  subscriber: [{ type: String, ref: 'User' }]
+  subscriber: [{ type: String, ref: 'User' }],
+  distA: Number
 });
 
 eventSchema.pre("save", function (next) {
