@@ -1,4 +1,6 @@
 
+var passwordh = require('password-hash-and-salt');
+
 import { BaseRoute } from './baseRoute';
 
 export class UserRoute extends BaseRoute {
@@ -20,6 +22,39 @@ export class UserRoute extends BaseRoute {
             }
         });
 
+        /**
+        @api {post} /user Ändert aktuelle Benutzerdaten
+        @apiName PostUserEmail
+        @apiGroup User
+ 
+        @apiSuccess {String} message Email changed succesful
+
+        @apiError {String} message Emails not match
+        */
+        router.post('/userEmail', (req, res, next) => {
+            if (req.isAuthenticated()) {
+                new UserRoute().changeEmail(req, res, next);
+            } else {
+                res.redirect('/login');
+            }
+        });
+
+        /**
+        @api {post} /user Ändert aktuelle Benutzerdaten
+        @apiName PostUserPassword
+        @apiGroup User
+ 
+        @apiSuccess {String} message Password changed succesful
+
+        @apiError {String} message Passwords not match
+        */
+        router.post('/userPassword', (req, res, next) => {
+            if (req.isAuthenticated()) {
+                new UserRoute().changePassword(req, res, next);
+            } else {
+                res.redirect('/login');
+            }
+        });
     }
 
     constructor() {
@@ -30,5 +65,37 @@ export class UserRoute extends BaseRoute {
         console.log("User Route angesurft");
 
         res.json(req.user);
+    }
+
+    public changeEmail(req, res, next) {
+        let email1: String = req.body.email1;
+        let email2: String = req.body.email2;
+        if (email1 && email1 === email2) {
+            req.user.update({ email: email1 }, function (err, data) {
+                if (err)
+                    res.json(err);
+                res.json({ message: "Email changed succesful" });
+            });
+        } else {
+            res.json({ message: "Emails not match" })
+        }
+    }
+
+    public changePassword(req, res, next) {
+        let password1: String = req.body.password1;
+        let password2: String = req.body.password2;
+        if (password1 && password1 === password2) {
+            passwordh(password1).hash(function (err, hash) {
+                if (err)
+                    res.json(err);
+                req.user.update({ password: hash }, function (err, data) {
+                    if (err)
+                        res.json(err);
+                    res.json({ message: "Password changed succesful" });
+                });
+            });
+        } else {
+            res.json({ message: "Passwords not match" })
+        }
     }
 }

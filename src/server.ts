@@ -12,7 +12,6 @@ import mongoose = require("mongoose"); // import mongoose
 
 //routes
 import { IndexRoute } from "./routes/indexRoute";
-// import { newUserRoute } from "./routes/newUserRoute";
 import { LoginRoute } from "./routes/loginRoute";
 import { SignupRoute } from "./routes/signupRoute";
 import { UserRoute } from "./routes/userRoute";
@@ -208,29 +207,6 @@ export class Server {
 
         //error handling
         app.use(errorHandler());
-
-        /*
-        User.find({}, function (err, Users) {
-            if (err)
-                throw err;
-
-            Users.forEach(element => {
-                passwordh(element.password).hash(function (err, hash) {
-                    if (err)
-                        throw err;
-
-                    element.password = hash;
-                    element.save(function (err, uElement) {
-                        if (err)
-                            throw err;
-
-                        console.log(uElement.password);
-                    });
-                });
-            });
-        });
-        */
-
     }
 
 
@@ -249,8 +225,6 @@ export class Server {
 
         //IndexRoute
         IndexRoute.create(router);
-        //newUserRoute
-        // newUserRoute.create(router);
         //LoginRoute
         LoginRoute.create(router);
         //SignupRoute
