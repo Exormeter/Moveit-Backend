@@ -23,7 +23,7 @@ export class UserRoute extends BaseRoute {
         });
 
         /**
-        @api {post} /user Ändert aktuelle Benutzerdaten
+        @api {post} /userEmail Ändert aktuelle Benutzerdaten
         @apiName PostUserEmail
         @apiGroup User
  
@@ -40,7 +40,7 @@ export class UserRoute extends BaseRoute {
         });
 
         /**
-        @api {post} /user Ändert aktuelle Benutzerdaten
+        @api {post} /userPassword Ändert aktuelle Benutzerdaten
         @apiName PostUserPassword
         @apiGroup User
  
