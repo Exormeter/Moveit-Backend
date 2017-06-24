@@ -54,11 +54,11 @@ export class NewEventRoute extends BaseRoute {
         new Event({
             creator: req.user.username,
             title: req.body.title,
-            keywords: req.body.keywords.split(','),
+            keywords: req.body.keywords,
             longitude: req.body.longitude,
             latitude: req.body.latitude,
             starttimepoint: req.body.starttimepoint,
-            subscriber: req.body.subscriber.split(',')
+            subscriber: req.body.subscriber
         }).save((err) => {
             if (err) {
                 next(err);
