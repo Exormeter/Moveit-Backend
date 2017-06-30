@@ -162,6 +162,9 @@ export class Server {
                         newUser.birthdate = req.body.birthdate;
                         newUser.sex = req.body.sex;
                         newUser.picture = req.body.picture;
+                        if (req.body.pushToken) {
+                            newUser.pushToken = req.body.pushToken;
+                        }
                         // save the user
                         newUser.save(function (err) {
                             if (err) {

@@ -38,7 +38,7 @@ export class AllUsersRoute extends BaseRoute {
             }
             var usernames = [];
             users.forEach(element => {
-                usernames.push(element.username);
+                usernames.push([element.username, element.pushToken]);
             });
             res.json(usernames);
         });

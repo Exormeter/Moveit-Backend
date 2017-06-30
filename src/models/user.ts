@@ -9,6 +9,7 @@ interface IUser {
   picture?: string;
   username: string;
   password: string;
+  pushToken?: string;
 }
 
 interface IUserModel extends IUser, mongoose.Document { };
@@ -22,7 +23,8 @@ var userSchema = new mongoose.Schema({
   sex: String,
   picture: String,
   username: String,
-  password: String
+  password: String,
+  pushToken: String
 });
 
 userSchema.pre("save", function (next) {
