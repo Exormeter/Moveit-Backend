@@ -42,4 +42,10 @@ kann zu einem REST Server mit MongoDB anbindung umgebaut werden.
 /allUsers - Ein Array mit allen Benutzernamen (GET und JSON)
 
 /user - Informationen über den eingeloggten Benutzer
+
+/userEmail - Zum Ändern der E-Mailadresse (POST und JSON)
+  Parameter: email1 und email2 (Bestätigung)
+
+/userPassword - Zum Ändern des Passworts (POST und JSON)
+  Parameter: password1 und password2 (Bestätigung)
 ```
