@@ -8,12 +8,12 @@ export class AllUsersRoute extends BaseRoute {
         console.log("Create all users route");
 
         /**
-        @api {get} /allUsers Alle Benutzernamen
+        @api {get} /allUsers Alle Benutzernamen und pushToken
         @apiName GetAllUsers
         @apiGroup User
  
-        @apiSuccess {String[]} response Alle Benutzernamen
-        @apiSuccess {String} response.benutzername Ein Benutzername
+        @apiSuccess {String[]} response Alle Benutzernamen und pushToken
+        @apiSuccess {String} response.benutzernameAndPushToken Ein Benutzername und pushToken
         */
         router.get('/allUsers', (req, res, next) => {
             if (req.isAuthenticated()) {
@@ -22,7 +22,6 @@ export class AllUsersRoute extends BaseRoute {
                 res.redirect('/login');
             }
         });
-
     }
 
     constructor() {
@@ -32,15 +31,11 @@ export class AllUsersRoute extends BaseRoute {
     public users(req, res, next) {
         console.log("All Users Route angesurft");
 
-        User.find( function (err, users) {
+        User.find({}, { _id: 0, username: 1, pushToken: 1 }, function (err, users) {
             if (err) {
                 req.json(err);
             }
-            var usernames = [];
-            users.forEach(element => {
-                usernames.push([element.username, element.pushToken]);
-            });
-            res.json(usernames);
+            res.json(users);
         });
     }
 }
