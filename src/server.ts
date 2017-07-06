@@ -15,6 +15,7 @@ import { IndexRoute } from "./routes/indexRoute";
 import { LoginRoute } from "./routes/loginRoute";
 import { SignupRoute } from "./routes/signupRoute";
 import { UserRoute } from "./routes/userRoute";
+import { UserTokenRoute } from "./routes/userToken";
 import { HomeRoute } from "./routes/homeRoute";
 import { NewEventRoute } from "./routes/newEventRoute";
 import { MyEventsRoute } from "./routes/myEventsRoute";
@@ -234,6 +235,8 @@ export class Server {
         SignupRoute.create(router);
         //UserRoute
         UserRoute.create(router);
+        //UserTokenRoute
+        UserTokenRoute.create(router);
         //HomeRoute
         HomeRoute.create(router);
         //NewEventRoute
