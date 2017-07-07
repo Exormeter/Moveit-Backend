@@ -30,8 +30,6 @@ export class MyEventsRoute extends BaseRoute {
     }
 
     public events(req, res, next) {
-        console.log("My Events Route angesurft");
-
         Event.find({ creator: req.user.username }, function (err, events) {
             if (err) {
                 res.json(err);

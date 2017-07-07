@@ -38,8 +38,6 @@ export class NewEventRoute extends BaseRoute {
     }
 
     public form(req, res, next) {
-        console.log("New Event Route angesurft");
-
         this.title = "New Event";
 
         let options: Object = {

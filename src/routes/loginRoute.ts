@@ -40,7 +40,6 @@ export class LoginRoute extends BaseRoute {
     }
 
     public login(req, res, next) {
-        console.log("Login Route angesurft");
         this.title = "Login";
 
         let options: Object = {

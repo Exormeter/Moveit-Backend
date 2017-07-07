@@ -43,7 +43,6 @@ export class SignupRoute extends BaseRoute {
     }
 
     public signup(req, res, next) {
-        console.log("Signup Route angesurft");
         this.title = "Signup";
 
         let options: Object = {

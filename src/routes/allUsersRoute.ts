@@ -29,8 +29,6 @@ export class AllUsersRoute extends BaseRoute {
     }
 
     public users(req, res, next) {
-        console.log("All Users Route angesurft");
-
         User.find({}, { _id: 0, username: 1, pushToken: 1 }, function (err, users) {
             if (err) {
                 req.json(err);
