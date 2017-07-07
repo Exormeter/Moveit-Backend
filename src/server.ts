@@ -138,7 +138,7 @@ export class Server {
         },
             function (req, username, password, done) {
                 // find a user in Mongo with provided username
-                User.findOne({ 'username': username }, function (err, user) {
+                User.findOne({ $or: [{ username: username }, { email: req.body.email }] }, function (err, user) {
                     // In case of any error return
                     if (err) {
                         console.log('Error in SignUp: ' + err);
