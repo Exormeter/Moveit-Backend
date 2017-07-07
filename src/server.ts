@@ -28,7 +28,8 @@ import { LogoutRoute } from "./routes/logoutRoute";
 import { PictureRoute } from "./routes/pictureRoute";
 
 //interfaces
-import * as User from './models/user'; // import User
+import * as User from './models/user';      // import User
+import * as Event from './models/event';    // import Event
 
 // Configuring Passport
 var passport = require('passport');
@@ -54,7 +55,30 @@ export class Server {
     }
 
     public api() {
-
+        /*
+        setInterval(function () {
+            console.log("Event.find()...");
+            Event.find({}, function (err, events) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                let now: Date = new Date(new Date().valueOf() - (1000 * 60 * 120));
+                events.filter(function (event) {
+                    return new Date(event.starttimepoint) <= now;
+                });
+                events.forEach(event => {
+                    Event.findByIdAndRemove({ _id: event._id }, function (err, updated) {
+                        if (err) {
+                            console.log(err);
+                            return;
+                        }
+                        console.log(updated);
+                    });
+                });
+            });
+        }, 1000 * 60);
+        */
     }
 
     public config() {
@@ -71,7 +95,7 @@ export class Server {
         app.use(logger("dev"));
 
         //mount json form parser
-        app.use(bodyParser.json({limit: '50mb'}));
+        app.use(bodyParser.json({ limit: '50mb' }));
 
         //mount query string parser
         app.use(bodyParser.urlencoded({
