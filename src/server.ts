@@ -71,11 +71,12 @@ export class Server {
         app.use(logger("dev"));
 
         //mount json form parser
-        app.use(bodyParser.json());
+        app.use(bodyParser.json({limit: '50mb'}));
 
         //mount query string parser
         app.use(bodyParser.urlencoded({
-            extended: true
+            extended: true,
+            limit: '50mb'
         }));
 
         //mount cookie parker
