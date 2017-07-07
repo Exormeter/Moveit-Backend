@@ -25,6 +25,7 @@ import { AllEventsRoute } from "./routes/allEvents";
 import { AllEventsCircleRoute } from "./routes/allEventsCircleRoute";
 import { AllUsersRoute } from "./routes/allUsersRoute";
 import { LogoutRoute } from "./routes/logoutRoute";
+import { PictureRoute } from "./routes/pictureRoute";
 
 //interfaces
 import * as User from './models/user'; // import User
@@ -257,6 +258,8 @@ export class Server {
         AllUsersRoute.create(router);
         //LogoutRoute
         LogoutRoute.create(router);
+        //PictureRoute
+        PictureRoute.create(router);
 
         //use router middleware
         app.use(router);
