@@ -56,7 +56,7 @@ export class NewEventRoute extends BaseRoute {
             longitude: req.body.longitude,
             latitude: req.body.latitude,
             starttimepoint: req.body.starttimepoint,
-            subscriber: req.body.subscriber
+            subscriber: []
         }).save((err) => {
             if (err) {
                 next(err);
