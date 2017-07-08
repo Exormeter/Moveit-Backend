@@ -8,6 +8,7 @@ interface IEvent {
   longitude: number;
   latitude: number;
   starttimepoint: Date;
+  picture: string;
   subscriber: [{ type: string, ref: 'User' }];
   distA?: number;
 }
@@ -22,6 +23,7 @@ var eventSchema = new mongoose.Schema({
   longitude: Number,
   latitude: Number,
   starttimepoint: Date,
+  pictrue: String,
   subscriber: [{ type: String, ref: 'User' }],
   distA: Number
 });
