@@ -62,8 +62,6 @@ export class UserRoute extends BaseRoute {
     }
 
     public user(req, res, next) {
-        console.log("User Route angesurft");
-
         res.json(req.user);
     }
 

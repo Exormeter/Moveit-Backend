@@ -31,12 +31,10 @@ export class LogoutRoute extends BaseRoute {
     }
 
     public success(req, res, next) {
-        console.log("Logout Route success angesurft");
         res.json("Logout erfolgreich");
     }
 
     public failure(req, res, next) {
-        console.log("Logout Route failure angesurft");
         res.json("Nicht angemeldet");
     }
 }

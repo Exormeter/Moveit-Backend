@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response} from 'express';
+import { NextFunction, Request, Response } from 'express';
 
 
 
@@ -12,7 +12,7 @@ export class BaseRoute {
 
 
 
-    constructor(){
+    constructor() {
 
         this.title = "Backend";
         this.scripts = [];
@@ -36,6 +36,6 @@ export class BaseRoute {
 
         //render view
         res.render(view, options);
-  }
+    }
 
 }

@@ -38,8 +38,6 @@ export class NewEventRoute extends BaseRoute {
     }
 
     public form(req, res, next) {
-        console.log("New Event Route angesurft");
-
         this.title = "New Event";
 
         let options: Object = {
@@ -59,7 +57,7 @@ export class NewEventRoute extends BaseRoute {
             latitude: req.body.latitude,
             starttimepoint: req.body.starttimepoint,
             pictrue: req.body.picture,
-            subscriber: req.body.subscriber
+            subscriber: []
         }).save((err) => {
             if (err) {
                 next(err);
