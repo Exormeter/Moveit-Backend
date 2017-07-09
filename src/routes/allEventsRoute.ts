@@ -39,7 +39,7 @@ export class AllEventsRoute extends BaseRoute {
             Event.find({}, {picture: 0}, function (err, events) {
                 if (err) {
                     res.json(err);
-                }
+                } else {
 
                 events.forEach(e => {
                     e.distA = AllEventsRoute.measure(lat, lon, e.latitude, e.longitude);
@@ -58,6 +58,7 @@ export class AllEventsRoute extends BaseRoute {
                 });
 
                 res.json(events);
+                }
             });
         } else {
             res.json({ message: "No lon and lat" });

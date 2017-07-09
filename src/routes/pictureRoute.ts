@@ -34,9 +34,10 @@ export class PictureRoute extends BaseRoute {
             User.findOne({ username: username }, { _id: 0, picture: 1 }, function (err, user) {
                 if (err) {
                     res.json(err);
-                }
+                } else {
 
                 res.json(user);
+                }
             });
         } else {
             res.json({ message: "No username" });
@@ -49,9 +50,10 @@ export class PictureRoute extends BaseRoute {
             req.user.update({ picture: pic }, function (err, updated) {
                 if (err) {
                     res.json(err);
-                }
+                } else {
 
                 res.json({ message: "User updated" });
+                }
             });
         } else {
             res.json({ message: "No picture" });

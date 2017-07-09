@@ -33,8 +33,9 @@ export class MyEventsRoute extends BaseRoute {
         Event.find({ creator: req.user.username }, {picture: 0}, function (err, events) {
             if (err) {
                 res.json(err);
-            }
+            } else {
             res.json(events);
+            }
         });
     }
 }

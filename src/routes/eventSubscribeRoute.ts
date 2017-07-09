@@ -36,7 +36,7 @@ export class EventSubscribeRoute extends BaseRoute {
             Event.findById(eventID, function (err, event) {
                 if (err) {
                     res.json(err);
-                }
+                } else {
 
                 var subs = event.subscriber;
                 if (subs) {
@@ -50,10 +50,12 @@ export class EventSubscribeRoute extends BaseRoute {
                 event.update({ subscriber: subs }, function (err, updated) {
                     if (err) {
                         res.json(err);
-                    }
+                    } else {
 
                     res.json({ message: "Event updated" });
+                    }
                 });
+                }
             });
         } else {
             res.json({ message: "No eventID" });

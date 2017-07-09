@@ -42,7 +42,7 @@ export class AllEventsCircleRoute extends BaseRoute {
             Event.find({}, { picture: 0 }, function (err, events) {
                 if (err) {
                     res.json(err);
-                }
+                } else {
 
                 let array = events.filter(function (e) {
                     return AllEventsCircleRoute.measure(lat, lon, e.latitude, e.longitude) <= dis;
@@ -53,6 +53,7 @@ export class AllEventsCircleRoute extends BaseRoute {
                 });
 
                 res.json(array);
+                }
             });
         } else {
             res.json({ message: "No lon, lat and dis" });

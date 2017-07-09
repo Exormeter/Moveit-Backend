@@ -52,8 +52,9 @@ export class UserTokenRoute extends BaseRoute {
             User.findOne({ username: username }, { _id: 0, pushToken: 1 }, function (err, token) {
                 if (err) {
                     res.json(err);
-                }
+                } else {
                 res.json(token);
+                }
             });
         } else {
             res.json({ message: "No such username" });
@@ -66,8 +67,9 @@ export class UserTokenRoute extends BaseRoute {
             req.user.update({ pushToken: token }, function (err, updated) {
                 if (err) {
                     res.json(err);
-                }
+                } else {
                 res.json({ message: "Token updated" });
+                }
             });
         } else {
             res.json({ message: "No token" });

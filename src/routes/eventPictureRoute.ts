@@ -34,9 +34,9 @@ export class EventPictureRoute extends BaseRoute {
             Event.findById(eventID, { _id: 0, picture: 1 }, function (err, event) {
                 if (err) {
                     res.json(err);
+                } else {
+                    res.json(event);
                 }
-
-                res.json(event);
             });
         } else {
             res.json({ message: "No eventID" });
@@ -50,9 +50,9 @@ export class EventPictureRoute extends BaseRoute {
             Event.findByIdAndUpdate(eventID, { picture: pic }, function (err, updated) {
                 if (err) {
                     res.json(err);
+                } else {
+                    res.json({ message: "Event updated" });
                 }
-
-                res.json({ message: "Event updated" });
             });
         } else {
             res.json({ message: "No eventID and picture" });
