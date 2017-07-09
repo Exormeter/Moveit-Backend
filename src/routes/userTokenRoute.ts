@@ -51,7 +51,7 @@ export class UserTokenRoute extends BaseRoute {
         if (username) {
             User.findOne({ username: username }, { _id: 0, pushToken: 1 }, function (err, token) {
                 if (err) {
-                    req.json(err);
+                    res.json(err);
                 }
                 res.json(token);
             });
@@ -65,7 +65,7 @@ export class UserTokenRoute extends BaseRoute {
         if (token) {
             req.user.update({ pushToken: token }, function (err, updated) {
                 if (err) {
-                    req.json(err);
+                    res.json(err);
                 }
                 res.json({ message: "Token updated" });
             });

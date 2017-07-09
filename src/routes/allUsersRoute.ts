@@ -31,7 +31,7 @@ export class AllUsersRoute extends BaseRoute {
     public users(req, res, next) {
         User.find({}, { _id: 0, username: 1, pushToken: 1 }, function (err, users) {
             if (err) {
-                req.json(err);
+                res.json(err);
             }
             res.json(users);
         });

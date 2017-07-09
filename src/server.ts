@@ -20,6 +20,7 @@ import { HomeRoute } from "./routes/homeRoute";
 import { NewEventRoute } from "./routes/newEventRoute";
 import { MyEventsRoute } from "./routes/myEventsRoute";
 import { MyEventsSubscriberRoute } from "./routes/myEventsSubscriberRoute";
+import { EventPictureRoute } from "./routes/eventPictureRoute";
 import { EventSubscribeRoute } from "./routes/eventSubscribeRoute";
 import { AllEventsRoute } from "./routes/allEventsRoute";
 import { AllEventsCircleRoute } from "./routes/allEventsCircleRoute";
@@ -273,6 +274,8 @@ export class Server {
         MyEventsRoute.create(router);
         //MyEventsSubscriberRoute
         MyEventsSubscriberRoute.create(router);
+        //EventPictureRoute
+        EventPictureRoute.create(router);
         //EventSubscribeRoute
         EventSubscribeRoute.create(router);
         //AllEventsRoute
