@@ -34,7 +34,7 @@ export class AllEventsCircleRoute extends BaseRoute {
     }
 
     public circle(req, res, next) {
-        Event.find({}, function (err, events) {
+        Event.find({}, {picture: 0}, function (err, events) {
             if (err) {
                 res.json(err);
             }
