@@ -34,25 +34,29 @@ export class AllEventsCircleRoute extends BaseRoute {
     }
 
     public circle(req, res, next) {
-        Event.find({}, {picture: 0}, function (err, events) {
-            if (err) {
-                res.json(err);
-            }
+        let lon: number = req.query.lon;
+        let lat: number = req.query.lat;
+        let dis: number = req.query.dis;
 
-            let lon: number = req.query.lon;
-            let lat: number = req.query.lat;
-            let dis: number = req.query.dis;
+        if (lon && lat && dis) {
+            Event.find({}, { picture: 0 }, function (err, events) {
+                if (err) {
+                    res.json(err);
+                }
 
-            let array = events.filter(function (e) {
-                return AllEventsCircleRoute.measure(lat, lon, e.latitude, e.longitude) <= dis;
+                let array = events.filter(function (e) {
+                    return AllEventsCircleRoute.measure(lat, lon, e.latitude, e.longitude) <= dis;
+                });
+
+                array.forEach(e => {
+                    e.distA = AllEventsCircleRoute.measure(lat, lon, e.latitude, e.longitude);
+                });
+
+                res.json(array);
             });
-
-            array.forEach(e => {
-                e.distA = AllEventsCircleRoute.measure(lat, lon, e.latitude, e.longitude);
-            });
-
-            res.json(array);
-        });
+        } else {
+            res.json({ message: "No lon, lat and dis" });
+        }
     }
 
     private static measure(lat1, lon1, lat2, lon2) {  // generally used geo measurement function
