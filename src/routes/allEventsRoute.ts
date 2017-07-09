@@ -36,7 +36,7 @@ export class AllEventsRoute extends BaseRoute {
         let lon: number = req.query.lon;
         let lat: number = req.query.lat;
         if (lon && lat) {
-            Event.find({}, function (err, events) {
+            Event.find({}, {picture: 0}, function (err, events) {
                 if (err) {
                     res.json(err);
                 }

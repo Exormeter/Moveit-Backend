@@ -23,7 +23,7 @@ var eventSchema = new mongoose.Schema({
   longitude: Number,
   latitude: Number,
   starttimepoint: Date,
-  pictrue: String,
+  picture: String,
   subscriber: [{ type: String, ref: 'User' }],
   distA: Number
 });

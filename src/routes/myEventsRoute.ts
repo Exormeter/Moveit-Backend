@@ -30,7 +30,7 @@ export class MyEventsRoute extends BaseRoute {
     }
 
     public events(req, res, next) {
-        Event.find({ creator: req.user.username }, function (err, events) {
+        Event.find({ creator: req.user.username }, {picture: 0}, function (err, events) {
             if (err) {
                 res.json(err);
             }
