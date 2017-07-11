@@ -36,28 +36,43 @@ export class AllEventsRoute extends BaseRoute {
         let lon: number = req.query.lon;
         let lat: number = req.query.lat;
         if (lon && lat) {
-            Event.find({}, {picture: 0}, function (err, events) {
+            Event.find({}, { picture: 0 }, function (err, events) {
                 if (err) {
                     res.json(err);
                 } else {
+                    events.forEach(e => {
+                        e.distA = AllEventsRoute.measure(lat, lon, e.latitude, e.longitude);
+                    });
 
-                events.forEach(e => {
-                    e.distA = AllEventsRoute.measure(lat, lon, e.latitude, e.longitude);
-                });
+                    events.sort(function (a, b) {
+                        if (a.distA < b.distA) {
+                            return -1;
+                        } else if (a.distA > b.distA) {
+                            return +1;
+                        } else {
+                            return 0;
+                        }
+                    });
 
-                events.sort(function(a, b) {
-                    if (a.subscriber.indexOf(req.user.username) >= 0) {
-                        return -1;
-                    } else if (b.subscriber.indexOf(req.user.username) >= 0) {
-                        return +1;
-                    } else if (a.distA <= b.distA) {
-                        return -1;
-                    } else {
-                        return +1;
-                    }
-                });
+                    /*
+                    events.sort(function (a, b) {
+                        if (a.creator === req.user.username) {
+                            if (b.creator === req.user.username) {
+                                return 0;
+                            } else {
+                                return -1;
+                            }
+                        } else {
+                            if (b.creator === req.user.username) {
+                                return +1;
+                            } else {
+                                return 0;
+                            }
+                        }
+                    });
+                    */
 
-                res.json(events);
+                    res.json(events);
                 }
             });
         } else {
