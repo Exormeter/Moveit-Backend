@@ -30,11 +30,11 @@ export class MyEventsSubscriberRoute extends BaseRoute {
     }
 
     public events(req, res, next) {
-        Event.find({ subscriber: req.user.username }, {picture: 0}, function (err, events) {
+        Event.find({ subscriber: req.user.username }, { picture: 0 }, function (err, events) {
             if (err) {
                 res.json(err);
             } else {
-            res.json(events);
+                res.json(events);
             }
         });
     }

@@ -38,23 +38,23 @@ export class EventSubscribeRoute extends BaseRoute {
                     res.json(err);
                 } else {
 
-                var subs = event.subscriber;
-                if (subs) {
-                    if (subs.indexOf(req.user.username) < 0) {
-                        subs.push(req.user.username);
-                    }
-                } else {
-                    subs = [req.user.username];
-                }
-
-                event.update({ subscriber: subs }, function (err, updated) {
-                    if (err) {
-                        res.json(err);
+                    var subs = event.subscriber;
+                    if (subs) {
+                        if (subs.indexOf(req.user.username) < 0) {
+                            subs.push(req.user.username);
+                        }
                     } else {
-
-                    res.json({ message: "Event updated" });
+                        subs = [req.user.username];
                     }
-                });
+
+                    event.update({ subscriber: subs }, function (err, updated) {
+                        if (err) {
+                            res.json(err);
+                        } else {
+
+                            res.json({ message: "Event updated" });
+                        }
+                    });
                 }
             });
         } else {

@@ -53,7 +53,7 @@ export class UserTokenRoute extends BaseRoute {
                 if (err) {
                     res.json(err);
                 } else {
-                res.json(token);
+                    res.json(token);
                 }
             });
         } else {
@@ -68,7 +68,7 @@ export class UserTokenRoute extends BaseRoute {
                 if (err) {
                     res.json(err);
                 } else {
-                res.json({ message: "Token updated" });
+                    res.json({ message: "Token updated" });
                 }
             });
         } else {

@@ -44,15 +44,15 @@ export class AllEventsCircleRoute extends BaseRoute {
                     res.json(err);
                 } else {
 
-                let array = events.filter(function (e) {
-                    return AllEventsCircleRoute.measure(lat, lon, e.latitude, e.longitude) <= dis;
-                });
+                    let array = events.filter(function (e) {
+                        return AllEventsCircleRoute.measure(lat, lon, e.latitude, e.longitude) <= dis;
+                    });
 
-                array.forEach(e => {
-                    e.distA = AllEventsCircleRoute.measure(lat, lon, e.latitude, e.longitude);
-                });
+                    array.forEach(e => {
+                        e.distA = AllEventsCircleRoute.measure(lat, lon, e.latitude, e.longitude);
+                    });
 
-                res.json(array);
+                    res.json(array);
                 }
             });
         } else {

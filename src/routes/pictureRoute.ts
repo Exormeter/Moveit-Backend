@@ -36,7 +36,7 @@ export class PictureRoute extends BaseRoute {
                     res.json(err);
                 } else {
 
-                res.json(user);
+                    res.json(user);
                 }
             });
         } else {
@@ -52,7 +52,7 @@ export class PictureRoute extends BaseRoute {
                     res.json(err);
                 } else {
 
-                res.json({ message: "User updated" });
+                    res.json({ message: "User updated" });
                 }
             });
         } else {

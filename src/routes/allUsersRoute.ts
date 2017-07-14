@@ -33,7 +33,7 @@ export class AllUsersRoute extends BaseRoute {
             if (err) {
                 res.json(err);
             } else {
-            res.json(users);
+                res.json(users);
             }
         });
     }

@@ -7,7 +7,7 @@ export class IndexRoute extends BaseRoute {
 
         router.get("/", (req: Request, res: Response, next: NextFunction) => {
             new IndexRoute().index(req, res, next);
-        })
+        });
     }
 
     constructor() {
