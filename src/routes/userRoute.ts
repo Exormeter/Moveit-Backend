@@ -1,4 +1,6 @@
 
+import * as Event from '../models/event';    // import Event
+
 var passwordh = require('password-hash-and-salt');
 
 import { BaseRoute } from './baseRoute';
@@ -108,11 +110,17 @@ export class UserRoute extends BaseRoute {
     public delete(req, res, next) {
         let userToDelete = req.user;
         req.logout();
-        userToDelete.remove(function (err, updated) {
+        Event.remove({ creator: userToDelete.username }, function (err) {
             if (err) {
                 res.json(err);
             } else {
-                res.json({ message: "User deleted" });
+                userToDelete.remove(function (err, updated) {
+                    if (err) {
+                        res.json(err);
+                    } else {
+                        res.json({ message: "User deleted" });
+                    }
+                });
             }
         });
     }
