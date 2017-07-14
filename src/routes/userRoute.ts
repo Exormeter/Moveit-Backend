@@ -55,6 +55,14 @@ export class UserRoute extends BaseRoute {
                 res.redirect('/login');
             }
         });
+
+        router.get('/userDelete', (req, res, next) => {
+            if (req.isAuthenticated()) {
+                new UserRoute().delete(req, res, next);
+            } else {
+                res.redirect('/login');
+            }
+        });
     }
 
     constructor() {
@@ -93,7 +101,19 @@ export class UserRoute extends BaseRoute {
                 });
             });
         } else {
-            res.json({ message: "Passwords not match" })
+            res.json({ message: "Passwords not match" });
         }
+    }
+
+    public delete(req, res, next) {
+        let userToDelete = req.user;
+        req.logout();
+        userToDelete.remove(function (err, updated) {
+            if (err) {
+                res.json(err);
+            } else {
+                res.json({ message: "User deleted" });
+            }
+        });
     }
 }
