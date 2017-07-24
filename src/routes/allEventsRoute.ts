@@ -72,6 +72,11 @@ export class AllEventsRoute extends BaseRoute {
                     });
                     */
 
+                    let now: Date = new Date();
+                    events = events.filter(function (e) {
+                        return e.starttimepoint.getTime() >= now.getTime();
+                    });
+
                     res.json(events);
                 }
             });

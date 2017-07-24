@@ -34,6 +34,10 @@ export class MyEventsRoute extends BaseRoute {
             if (err) {
                 res.json(err);
             } else {
+                let now: Date = new Date();
+                events = events.filter(function (e) {
+                    return e.starttimepoint.getTime() >= now.getTime();
+                });
                 events.sort(function (a, b) {
                     return a.starttimepoint.getTime() - b.starttimepoint.getTime();
                 });

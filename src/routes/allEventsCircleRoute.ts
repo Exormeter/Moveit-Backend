@@ -48,6 +48,11 @@ export class AllEventsCircleRoute extends BaseRoute {
                         return AllEventsCircleRoute.measure(lat, lon, e.latitude, e.longitude) <= dis;
                     });
 
+                    let now: Date = new Date();
+                    array = array.filter(function (e) {
+                        return e.starttimepoint.getTime() >= now.getTime();
+                    });
+
                     array.forEach(e => {
                         e.distA = AllEventsCircleRoute.measure(lat, lon, e.latitude, e.longitude);
                     });
