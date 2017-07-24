@@ -34,6 +34,9 @@ export class MyEventsSubscriberRoute extends BaseRoute {
             if (err) {
                 res.json(err);
             } else {
+                events.sort(function (a, b) {
+                    return a.starttimepoint.getTime() - b.starttimepoint.getTime();
+                });
                 res.json(events);
             }
         });
