@@ -56,7 +56,7 @@ export class Server {
     }
 
     public api() {
-        /*
+        // Remove Events 120 minutes after starttimepoint...
         setInterval(function () {
             console.log("Event.find()...");
             Event.find({}, function (err, events) {
@@ -64,11 +64,12 @@ export class Server {
                     console.log(err);
                     return;
                 }
-                let now: Date = new Date(new Date().valueOf() - (1000 * 60 * 120));
-                events.filter(function (event) {
-                    return new Date(event.starttimepoint) <= now;
+                let now: Date = new Date(new Date().getTime() - (1000 * 60 * 120));
+                events = events.filter(function (event) {
+                    return event.starttimepoint.getTime() <= now.getTime();
                 });
                 events.forEach(event => {
+                    console.log("Remove: " + event.title);
                     Event.findByIdAndRemove({ _id: event._id }, function (err, updated) {
                         if (err) {
                             console.log(err);
@@ -79,7 +80,6 @@ export class Server {
                 });
             });
         }, 1000 * 60);
-        */
     }
 
     public config() {
